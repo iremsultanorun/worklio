@@ -64,6 +64,11 @@ const createTables = () => {
     )
     `
     )
+    try {
+        db.exec(`ALTER TABLE REMINDERS ADD COLUMN snoozed_until TEXT`)
+    } catch {
+
+    }
 }
 createTables()
-module.exports=createTables
+module.exports = createTables

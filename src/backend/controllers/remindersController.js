@@ -20,4 +20,10 @@ const deleteReminder = (req, res) => {
     db.prepare('DELETE FROM REMINDERS WHERE id=?').run(id)
     res.json({ message: "Silindi" })
 }
-module.exports = { getAllReminders, createReminder, updateReminder, deleteReminder }
+const snoozeReminder = (req, res) => {
+    const id = req.params.id
+    const { snoozed_until } = req.body
+    db.prepare('UPDATE REMINDERS SET snoozed_until = ? WHERE id = ?').run(snoozed_until, id)
+    res.json({ message: 'Ertelendi' })
+  }
+module.exports = { getAllReminders, createReminder, updateReminder, deleteReminder,snoozeReminder }

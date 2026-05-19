@@ -1,7 +1,7 @@
 const express=require("express")
 const cors=require("cors")
 const app=express()
-const PORT=3000
+const PORT=3001
 app.use(express.json())
 app.use(cors())
 const schema = require('./db/schema')
@@ -23,6 +23,6 @@ app.get("/",(req,res)=>{
     res.json({ mesaj: "Worklio API çalışıyor" })
 })
 
-app.listen(PORT,()=>{
-    console.log("çalışıyor mu?");
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Sunucu ${PORT} portunda çalışıyor`);
 })
