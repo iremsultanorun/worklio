@@ -45,6 +45,7 @@ const createTables = () => {
     target_amount REAL NOT NULL,
     current_amount REAL DEFAULT 0,
     end_date TEXT,
+    category TEXT,
     is_completed INTEGER DEFAULT 0,
     created TEXT DEFAULT (datetime('now'))
     );
