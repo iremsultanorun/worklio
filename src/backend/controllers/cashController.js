@@ -5,14 +5,14 @@ const getAllCash = (req, res) => {
     res.json(cash)
 }
 const createCash = (req, res) => {
-    const {date,amount,density} = req.body
-    db.prepare('INSERT INTO CASH (date,amount,density) VALUES (?,?,?)').run(date,amount,density)
+    const {date,amount,density,title} = req.body
+    db.prepare('INSERT INTO CASH (date,amount,density,title) VALUES (?,?,?,?)').run(date,amount,density,title)
     res.json({ message: "başarıyla eklendi" })
 }
 const updateCash = (req, res) => {
     const id = req.params.id
-    const { date,amount,density} = req.body
-    db.prepare('UPDATE CASH SET date=?, amount=? ,density=? WHERE id=?').run(date,amount,density, id)
+    const { date,amount,density,title} = req.body
+    db.prepare('UPDATE CASH SET date=?, amount=? ,density=?,title=? WHERE id=?').run(date,amount,density,title, id)
     res.json({ message: "başarıyla güncellendi" })
 }
 const deleteCash = (req, res) => {

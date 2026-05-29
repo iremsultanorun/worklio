@@ -67,7 +67,8 @@ const createTables = () => {
     )
     try {
         db.exec(`ALTER TABLE REMINDERS ADD COLUMN snoozed_until TEXT`)
-    } catch {
+        db.exec(`ALTER TABLE CASH ADD COLUMN title TEXT NOT NULL DEFAULT ''`)
+    } catch (err) {
 
     }
 }
