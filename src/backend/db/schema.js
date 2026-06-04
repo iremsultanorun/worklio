@@ -56,13 +56,6 @@ const createTables = () => {
     date TEXT,
     created TEXT DEFAULT (datetime('now'))
     );
-    CREATE TABLE IF NOT EXISTS RECIPES(
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    product_name TEXT NOT NULL,
-    ingredients TEXT NOT NULL,
-    preparation_note TEXT,
-    created TEXT DEFAULT (datetime('now'))
-    )
     `
     )
     try {

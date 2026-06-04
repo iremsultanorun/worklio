@@ -9,12 +9,22 @@ const createGoals  = (req, res) => {
     db.prepare('INSERT INTO GOALS (goal_name,target_amount,current_amount,end_date,is_completed) VALUES (?,?,?,?,?)').run(goal_name,target_amount,current_amount,end_date,is_completed)
     res.json({ message: "başarıyla eklendi" })
 }
-const updateGoals  = (req, res) => {
+const updateGoals = (req, res) => {
     const id = req.params.id
-    const {goal_name,target_amount,current_amount,end_date,is_completed} = req.body
-    db.prepare('UPDATE GOALS SET goal_name=?,target_amount=?,current_amount=?,end_date=?,is_completed=? WHERE id=?').run(goal_name,target_amount,current_amount,end_date,is_completed,id)
-    res.json({ message: "başarıyla güncellendi" })
-}
+    const { goal_name, target_amount, current_amount, end_date, is_completed, description, category } = req.body
+    db.prepare(`
+      UPDATE GOALS SET
+        goal_name = COALESCE(?, goal_name),
+        target_amount = COALESCE(?, target_amount),
+        current_amount = COALESCE(?, current_amount),
+        end_date = COALESCE(?, end_date),
+        is_completed = COALESCE(?, is_completed),
+        description = COALESCE(?, description),
+        category = COALESCE(?, category)
+      WHERE id = ?
+    `).run(goal_name, target_amount, current_amount, end_date, is_completed, description, category, id)
+    res.json({ message: 'başarıyla güncellendi' })
+  }
 const deleteGoals  = (req, res) => {
     const id = req.params.id
     db.prepare('DELETE FROM GOALS WHERE id=?').run(id)
