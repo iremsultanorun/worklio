@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useCallback } from 'react'
-import { Trash2, CheckCircle2, TrendingUp, Target, RotateCcw, X, Divide } from 'lucide-react'
-import { Goal } from '../lib/types'
+import { useState } from 'react'
+import { Trash2, CheckCircle2, TrendingUp, Target, RotateCcw, X } from 'lucide-react'
+import { Goal } from '../../../../lib/types'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
 
