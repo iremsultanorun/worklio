@@ -137,7 +137,7 @@ export default function RemindersPage() {
 
     try {
       if (editingId) {
-        setReminderList(prev => prev.map(r => r.id === editingId ? { ...r, ...form } : r))
+        setReminderList(prev => prev.map(r => r.id === editingId ? { ...r, ...form, repeat: form.repeat as Reminder['repeat'] } : r))
         await fetch(`${BASE_URL}/reminders/${editingId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
